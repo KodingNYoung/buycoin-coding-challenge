@@ -169,7 +169,7 @@ body {
   padding: 5px 0;
   border-radius: 5px;
   box-shadow: 0px 1px 30px #24292e1e;
-  z-index: 7;
+  z-index: 100;
 }
 .nav-item.drop-down .dropdown-items::before{
   content: '';
@@ -304,7 +304,6 @@ nav .sticky-nav-links.active svg {
   visibility: hidden;
   display: flex;
   align-items: center;
-  transition: visibility 0.5s;
 }
 .sticky-navbar.lg-screen .user-display.show {
   visibility: visible;
@@ -452,7 +451,7 @@ main {
 }
 /* each repository */
 .repositories .repository {
-  padding: 25px 0 20px 0;
+  padding: 15px 0 5px 0;
   border-bottom: 1px solid #ddd;
   display: flex;
   justify-content: space-between;
@@ -522,9 +521,8 @@ main {
   justify-content: flex-start;
 }
 .dominant-lang .circle {
-  width: 15px;
-  height: 15px;
-  background-color: #f1e05a;
+  width: 10px;
+  height: 10px;
   margin-right: 4px;
   border-radius: 50%;
 }
