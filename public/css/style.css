@@ -206,6 +206,7 @@ body {
 .nav-item.drop-down .dropdown-items li button.setstatus-btn {
   width: 100%;
   background-color: transparent;
+  color: #24292e;
   border: 1px solid #eee;
   border-radius: 5px;
   padding: 5px;
@@ -238,7 +239,7 @@ body {
   margin: 5px 0;
 }
 
-/* top sicky navbar */
+/* sicky navbar */
 .sticky-navbar {
   position: sticky;
   left: 0;
@@ -348,6 +349,39 @@ main {
   position: relative;
   margin-top: -30px;
 }
+.img-container .tooltip-container {
+  position: absolute;
+  bottom:-30px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 20;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.img-container .tooltip-container .tooltip {
+  background-color:  #24292e;
+  color: #fff;
+  padding: 6px 10px;
+  font-size: 0.7rem;
+  border-radius: 8px;
+}
+.img-container .tooltip-container .tooltip:after {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 46%;
+  color: black;
+  border-top: 2px solid transparent;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid #24292e;
+  height: 0;
+}
+.img-container a:hover ~ .tooltip-container{
+  opacity: 1;
+}
 .img-container .avatar-setstatus-btn {
   background-color: #fff;
   border: 1px solid #999;
@@ -381,6 +415,7 @@ main {
   position: relative;
 }
 .name-section {
+  margin-top: 10px;
   font-size: 1.1rem;
 }
 .name-section span{
@@ -478,7 +513,8 @@ main {
 }
 /* repo desc */
 .repository p.repo-desc {
-  margin: 15px 0;
+  margin: 8px 0;
+  font-size: 0.85rem;
 }
 /* topics */
 .repository .topics {
@@ -500,7 +536,7 @@ main {
 }
 /* the footer */
 .repository footer {
-  padding: 15px 0;
+  padding: 8px 0;
   display: flex;
   align-items: center;
   justify-content: flex-start;

@@ -1,13 +1,10 @@
 const user_data = {
-  token_reversed: '4b5659b4d722ae33c6d0256bc77ad087d1def6fa',
   username: 'KodingNYoung'
 }
-const fetchURL = 'https://api.github.com/graphql';
 const headers = {
   "Content-Type": "application/json",
-  Authorization: `bearer ${[...user_data.token_reversed].reverse().join('')}`
 }
-console.log([...user_data.token_reversed].reverse().join(''))
+
 const requestBody = JSON.stringify({
   query: `
   query { 
@@ -16,11 +13,12 @@ const requestBody = JSON.stringify({
       name,
       login,
       avatarUrl,
-      repositories (first: 20, orderBy: {field: UPDATED_AT, direction:DESC }) {
+      repositories (first: 20, affiliations: [OWNER], ,orderBy: {field: PUSHED_AT, direction:DESC }) {
         totalCount,
         edges{
           node {
             name,
+            url,
             isFork,
             description,
             repositoryTopics (first:5) {
@@ -39,7 +37,11 @@ const requestBody = JSON.stringify({
             licenseInfo {
               name
             },
-            updatedAt
+            pushedAt,
+            parent {
+              url
+              nameWithOwner
+            }
           }
         }
       }
@@ -48,13 +50,14 @@ const requestBody = JSON.stringify({
 });
 
 const fetchDetails = async () => {
-  const res = await fetch(fetchURL, { method: "POST", headers: headers, body: requestBody})
+  // when sending the requesr from the client, you will send it to the /github endpoint
+  const res = await fetch('/github', { method: "POST", headers: headers, body: requestBody})
 
   if (!res.ok) {
     throw new Error('Couldn\'t get the data, :(')
   }else {
     const data = await res.json();
-    return data.data.user;
+    return data.data.data.user;
   }
 }
 
@@ -155,22 +158,41 @@ class UI {
     </span>
     `
   }
+  getRepoDesc = desc => {
+    if (desc === null) return '';
+
+    return `
+      <p class="repo-desc">${desc}</p>
+    `
+  }
+
+  getRepoForkEl = parent => {
+    if (parent === null) return '';
+
+    return `
+      
+    <small class="fork-detail">Forked from <a href="${parent.url}">${parent.nameWithOwner}</a></small> 
+    `
+  }
   generateRepoString = repo => {
     let repoString = '';
 
-    const heading = `<p class="repo-name"><a href="#">${repo.node.name}</a></p>`;
-    const desc = `<p class="repo-desc">${repo.node.description}</p>`;
+    const heading = `<p class="repo-name"><a href="${repo.node.url}">${repo.node.name}</a></p>`;
+    const fork = this.getRepoForkEl(repo.node.parent);
+    const desc = this.getRepoDesc(repo.node.description);
     const topicBadges = this.generateTopicBadges(repo.node.repositoryTopics.nodes); 
     const dominantLang = this.generateDominantLang(repo.node.primaryLanguage);
     const starCount = this.getStarCountEl(repo.node.stargazerCount);
     const forkCount = this.getForkCountEl(repo.node.forkCount);
     const licenseEl = this.getLicenseEl(repo.node.licenseInfo);
-    const updateTime = new Date(repo.node.updatedAt).toLocaleDateString('default', { day: '2-digit', month: 'short' });
-    // console.log()
+    const updateTime = new Date(repo.node.pushedAt).toLocaleDateString('default', { day: 'numeric', month: 'short' });
+
+
     repoString = `
     <div class="repository">
       <div class="left">
         ${heading}
+        ${fork}
         ${desc}
         ${topicBadges}
         <footer>
@@ -222,5 +244,3 @@ const handleUiInjection = (user) => {
 fetchDetails()
   .then(data => handleUiInjection(data))
   // .catch(err => console.log(err))
-  
-{/* <small class="fork-detail">Forked from <a href="#">no where</a></small> */}

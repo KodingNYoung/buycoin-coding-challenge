@@ -6,15 +6,14 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
   <link rel="stylesheet" href="./css/style.css">
-  <script src="./js/request.js"></script>
-
+  
   <title>Your Repositories</title>
 </head>
 <body>
   <section class="top-navbar">
     <section class="left-nav-section">
       <header>
-      <button id="nav-burger-btn" class="sm-scr-only fas fa-bars nav-button"></button>
+        <button id="nav-burger-btn" class="sm-scr-only fas fa-bars nav-button"></button>
         <a href="#" class="github-logo">
           <span class="fab fa-github"></span>
         </a>
@@ -36,8 +35,8 @@
           <a href="#" class="sm-scr-only">settings</a>
           <a href="#" class="sm-scr-only user"><img src="./img/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg" alt="" class="navbar-avatar profile-img"> <span class="username"></span></a>
           <a href="#" class="sm-scr-only"><span class="fas fa-sign-out-alt"></span>
-sign out</a>
-        </nav>
+            sign out</a>
+          </nav>
       </div>
     </section>
     <section class="right-nav-section">
@@ -108,7 +107,7 @@ sign out</a>
           <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path>
         </svg>
         <span>Repositories</span>
-        <span class="repo-count">38</span>
+        <span class="repo-count"></span>
       </a>
       <a href="#" class="sticky-nav-links">
         <svg class="octicon octicon-project UnderlineNav-octicon hide-sm" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true">
@@ -129,6 +128,9 @@ sign out</a>
       <div class="photo-name-section">
         <div class="img-container">
           <a href="#"><img src="./img/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg" alt="big avatar" class="avatar profile-img"></a>
+          <div class="tooltip-container">
+            <span class="tooltip">Change your avatar</span>
+          </div>
           <button class="avatar-setstatus-btn sm-scr-hide">
             <span class="far fa-smile"></span>
             <span>Set status</span>
@@ -146,7 +148,7 @@ sign out</a>
       <div class="user-bio">
       </div>
     </div>
-    </div>
+  </div>
     <div class="main-page-content lg-screen">
       <div class="repo-search-form">
         <input type="text" placeholder="Find a repository...">
@@ -169,7 +171,7 @@ sign out</a>
           <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path>
         </svg>
         <span>Repositories</span>
-        <span class="repo-count">38</span>
+        <span class="repo-count"></span>
       </a>
       <a href="#" class="sticky-nav-links">
         <svg class="octicon octicon-project UnderlineNav-octicon hide-sm" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true">
@@ -190,9 +192,10 @@ sign out</a>
       <input type="text" placeholder="Find a repository...">
     </div>
     <div class="repositories">
-    
+      
     </div>
   </section>
+  <script src="./js/request.js"></script>
   <script src="./js/script.js"></script>
 </body>
 </html>
