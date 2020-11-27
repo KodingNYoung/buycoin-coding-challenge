@@ -50,7 +50,6 @@ const requestBody = JSON.stringify({
 });
 
 const fetchDetails = async () => {
-  // when sending the requesr from the client, you will send it to the /github endpoint
   const res = await fetch('/github', { method: "POST", headers: headers, body: requestBody})
 
   if (!res.ok) {
