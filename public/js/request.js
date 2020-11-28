@@ -1,6 +1,3 @@
-const user_data = {
-  username: 'KodingNYoung'
-}
 const headers = {
   "Content-Type": "application/json",
 }
@@ -8,7 +5,7 @@ const headers = {
 const requestBody = JSON.stringify({
   query: `
   query { 
-    user(login: "KodingNYoung") {
+    viewer {
       bio,
       name,
       login,
@@ -56,7 +53,8 @@ const fetchDetails = async () => {
     throw new Error('Couldn\'t get the data, :(')
   }else {
     const data = await res.json();
-    return data.data.data.user;
+    console.log(data)
+    return data.data.data.viewer;
   }
 }
 
@@ -230,7 +228,7 @@ class UI {
 
 const handleUiInjection = (user) => {
   const ui = new UI();
-  console.log(user.repositories.edges);
+  // console.log(user);
 
   ui.setAvatarsUrl(user.avatarUrl);
   ui.setUserBio(user.bio);

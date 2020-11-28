@@ -27,6 +27,12 @@ app.post('/github', (request, response) => {
   // the real fetch request
   fetch('https://api.github.com/graphql', option)
   .then(res => res.json())
-  .then(data => response.json({data: data}))
-  .catch(err => response.json({error: err}))
+  .then(data => {
+    console.log(data);
+    return response.json({data: data});
+  })
+  .catch(err => {
+    console.log(err);
+    return response.json({error: err});
+  })
 })
